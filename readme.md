@@ -41,11 +41,8 @@ int __ex_code = 0;
 
 int main() {
     var x = New(VAR_INT, 5);
-    var y = New(VAR_INT, 10);
     
-    var sum = New(VAR_INT, x.value.int_value + y.value.int_value);
-    
-    printf("Sum: %d\n", sum.value.int_value);
+    printf("Sum: %d\n", x.value.int_value); //5
     
     return 0;
 }
@@ -60,14 +57,14 @@ int main() {
 #include "lib/Exceptions.h"
 
 int main() {
-    var array = NewArray(VAR_INT, 3);
-    array.value.array_value[0] = New(VAR_INT, 1);
-    array.value.array_value[1] = New(VAR_INT, 2);
-    array.value.array_value[2] = New(VAR_INT, 3);
-    
-    for (int i = 0; i < 3; i++) {
-        printf("Array[%d]: %d\n", i, array.value.array_value[i].value.int_value);
-    }
+    Array* a = array();
+    a->push(a, New(VAR_INT, 20));
+    a->push(a, New(VAR_INT, 10));
+    a->push(a, New(VAR_INT, 30));
+    a->push(a, New(VAR_STRING, "Hello"));
+    printf("length:%zu\n", a->length); // 4
+    a->foreach(a, print); // 20 10 30 Hello
+    a->sort(a, compare_var); // 10 20 30 Hello
     
     return 0;
 }
@@ -85,18 +82,13 @@ jmp_buf __ex_buf;
 int __ex_code = 0;
 
 int main() {
-    if (__ex_code = setjmp(__ex_buf)) {
-        printf("Exception caught: %d\n", __ex_code);
-    } else {
-        var x = New(VAR_INT, 5);
-        var y = New(VAR_INT, 0);
-        
-        if (y.value.int_value == 0) {
-            Throw(1); // Throwing an exception
-        }
-        
-        var result = New(VAR_INT, x.value.int_value / y.value.int_value);
-        printf("Result: %d\n", result.value.int_value);
+    int test = 0;
+    try{
+        if(test == 0)
+            throw(1)
+    }catch{
+        printf("Error code [%d]\n", __ex_code);
+        printf("test variable is 0");
     }
     
     return 0;
