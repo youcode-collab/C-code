@@ -95,14 +95,6 @@ int main() {
 }
 ```
 
-### Documentation
-
-For detailed documentation, please refer to the [Wiki](https://github.com/yourusername/cello-lookalike/wiki).
-
 ### Contributing
 
-We welcome contributions! Please read our [contributing guidelines](https://github.com/yourusername/cello-lookalike/blob/main/CONTRIBUTING.md) before submitting a pull request.
-
-### License
-
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/yourusername/cello-lookalike/blob/main/LICENSE) file for details.
+We welcome contributions! Please fork and add your magic.
