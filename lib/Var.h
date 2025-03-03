@@ -35,6 +35,8 @@ var New(var_type type, ...) {
         }
         case VAR_NULL:
             break;
+        case VAR_ARRAY:
+            break;
     }
 
     va_end(args);
